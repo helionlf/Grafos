@@ -169,6 +169,54 @@ class GrafoMatrizAdjacencia {
         return false;
     } 
 
+    public boolean isEuleriano() {
+        int cont = 0;
+        for (int i = 0; i < numVertices; i++) {
+            int arestas = contarArestas(i);
+            if(arestas%2 == 0) {
+               cont++; 
+            }
+        }
+        
+        if(cont == numVertices) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public boolean notEuleriano() {
+        int cont = 0;
+        for (int i = 0; i < numVertices; i++) {
+            int arestas = contarArestas(i);
+            if(arestas%2 != 0) {
+               cont++; 
+            }
+        }
+        
+        if(cont >= 2) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public boolean isSemeEuleriano() {
+        int cont = 0;
+        for (int i = 0; i < numVertices; i++) {
+            int arestas = contarArestas(i);
+            if(arestas%2 != 0) {
+               cont++; 
+            }
+        }
+        
+        if(cont == 2) {
+            return true;
+        }
+        
+        return false;
+    }
+    
     public void imprimirMatriz() {
         for (int i = 0; i < numVertices; i++) {
             System.out.print(nomesVertices[i].getNome() + " ");
