@@ -25,7 +25,6 @@ public class Main {
         // int numVertices = 7;
         // int numArestas = 13;
         
-        
         // String arestaA[] = {"b", "c", "f", "g"};
         // String arestaB[] = {"a", "c", "d", "f"};
         // String arestaC[] = {"a", "b", "d"};
@@ -102,22 +101,22 @@ public class Main {
         System.out.println("Grafo original:\n");
         grafo.imprimirMatriz();
         
-        if(grafo.isHamiltonianoDirac()) {
-            System.out.println("\nDirac: É um grafo Hamiltoniano");
+        if(grafo.isEuleriano()) {
+            System.out.println("\nÉ Euleriano");
         } else {
-            System.out.println("\nDirac: Não é um grafo Hamiltoniano");
+            System.out.println("\nNão é Euleriano");
         }
         
-        if(grafo.isHamiltonianoOre()) {
-            System.out.println("\nOre: É um grafo Hamiltoniano");
+        if(grafo.notEuleriano()) {
+            System.out.println("\nÉ Não Euleriano");
         } else {
-            System.out.println("\nOre: Não é um grafo Hamiltoniano");
+            System.out.println("\nNão é Não Euleriano");
         }
         
-        if(grafo.isHamiltonianoBondyChvatal()) {
-            System.out.println("\nBondy & Chvátal: É um grafo Hamiltoniano");
+        if(grafo.isSemeEuleriano()) {
+            System.out.println("\nÉ Seme Euleriano");
         } else {
-            System.out.println("\nBondy & Chvátal: Não é um grafo Hamiltoniano");
+            System.out.println("\nNão é Seme Euleriano");
         }
     }
 }
