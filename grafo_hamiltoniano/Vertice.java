@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 class Vertice {
     private String nome;
     private int indice;
