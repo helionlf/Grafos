@@ -173,32 +173,16 @@ class GrafoMatrizAdjacencia {
         int cont = 0;
         for (int i = 0; i < numVertices; i++) {
             int arestas = contarArestas(i);
-            if(arestas%2 == 0) {
-               cont++; 
-            }
-        }
-        
-        if(cont == numVertices) {
-            return true;
-        }
-        
-        return false;
-    }
-    
-    public boolean notEuleriano() {
-        int cont = 0;
-        for (int i = 0; i < numVertices; i++) {
-            int arestas = contarArestas(i);
             if(arestas%2 != 0) {
                cont++; 
             }
         }
         
-        if(cont >= 2) {
-            return true;
+        if(cont > 0) {
+            return false;
         }
         
-        return false;
+        return true;
     }
     
     public boolean isSemeEuleriano() {
@@ -210,11 +194,17 @@ class GrafoMatrizAdjacencia {
             }
         }
         
-        if(cont == 2) {
+        if(cont == 2 || isEuleriano()) {
             return true;
         }
         
         return false;
+    }
+    
+    void caminhoEuleriano() {
+        if(isEuleriano() || isSemeEuleriano()) {
+            System.out.println("vai ter coisas");
+        }
     }
     
     public void imprimirMatriz() {
