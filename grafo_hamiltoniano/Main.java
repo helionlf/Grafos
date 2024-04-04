@@ -112,5 +112,9 @@ public class Main {
         } else {
             System.out.println("\nNão é Seme Euleriano");
         }
+        
+        grafo.encontrarCaminhoEuleriano();
+        
+        grafo.encontrarCaminhoEulerianoTeste();
     }
 }
