@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 class GrafoMatrizAdjacencia {
     private int numVertices;
@@ -201,10 +202,61 @@ class GrafoMatrizAdjacencia {
         return false;
     }
     
-    void caminhoEuleriano() {
-        if(isEuleriano() || isSemeEuleriano()) {
-            System.out.println("vai ter coisas");
+    public void encontrarCaminhoEuleriano() {
+        if (!isSemeEuleriano()) {
+            System.out.println("O grafo não possui um caminho euleriano.");
+            return;
         }
+
+        Stack<Integer> stack = new Stack<>();
+        ArrayList<Integer> resultado = new ArrayList<>();
+
+        // Encontra um vértice com grau ímpar para iniciar o caminho euleriano
+        int verticeInicial = 0;
+        for (int i = 0; i < numVertices; i++) {
+            if (contarArestas(i) % 2 != 0) {
+                verticeInicial = i;
+                break;
+            }
+        }
+
+        stack.push(verticeInicial);
+        while (!stack.isEmpty()) {
+            int atual = stack.peek();
+            int proximo = 0;
+
+            // Encontra o próximo vértice adjacente não visitado
+            for (int i = 0; i < numVertices; i++) {
+                if (matrizAdjacencia[atual][i] == 1) {
+                    proximo = i;
+                    break;
+                }
+            }
+
+            // Remove a aresta entre o vértice atual e o próximo
+            matrizAdjacencia[atual][proximo] = 0;
+            matrizAdjacencia[proximo][atual] = 0;
+
+            // Adiciona o próximo vértice ao caminho euleriano
+            stack.push(proximo);
+
+            // Se não houver mais arestas saindo do próximo vértice, adiciona-o ao resultado
+            if (contarArestas(proximo) == 0) {
+                while(!stack.isEmpty()) {
+                    resultado.add(stack.pop());
+                }
+            }
+        }
+
+        // Exibe o caminho euleriano
+        System.out.println("Caminho Euleriano:");
+        for (int i = resultado.size() - 1; i >= 0; i--) {
+            System.out.print(nomesVertices[resultado.get(i)].getNome());
+            if (i != 0) {
+                System.out.print(" -> ");
+            }
+        }
+        System.out.println();
     }
     
     public void imprimirMatriz() {
@@ -216,4 +268,55 @@ class GrafoMatrizAdjacencia {
             System.out.println();
         }
     }
+    
+    public void encontrarCaminhoEulerianoTeste() {
+        if (!isEuleriano()) {
+            System.out.println("O grafo não possui um ciclo euleriano.");
+            return;
+        }
+    
+        // Cria uma cópia da matriz de adjacência para marcar as arestas visitadas
+        int[][] copiaMatrizAdjacencia = new int[numVertices][numVertices];
+        for (int i = 0; i < numVertices; i++) {
+            for (int j = 0; j < numVertices; j++) {
+                copiaMatrizAdjacencia[i][j] = matrizAdjacencia[i][j];
+            }
+        }
+    
+        Stack<Integer> ciclo = new Stack<>();
+        ArrayList<Integer> resultado = new ArrayList<>();
+        int verticeAtual = 0; // Inicia a busca a partir do primeiro vértice
+    
+        ciclo.push(verticeAtual);
+        while (!ciclo.isEmpty()) {
+            if (contarArestas(verticeAtual) == 0) {
+                // Adiciona o vértice ao ciclo euleriano
+                resultado.add(verticeAtual);
+                // Remove a última aresta do ciclo
+                verticeAtual = ciclo.pop();
+            } else {
+                // Encontra a próxima aresta não visitada e a adiciona ao ciclo
+                for (int i = 0; i < numVertices; i++) {
+                    if (copiaMatrizAdjacencia[verticeAtual][i] == 1) {
+                        ciclo.push(verticeAtual);
+                        copiaMatrizAdjacencia[verticeAtual][i] = 0;
+                        copiaMatrizAdjacencia[i][verticeAtual] = 0;
+                        verticeAtual = i;
+                        break;
+                    }
+                }
+            }
+        }
+    
+        // Exibe o ciclo euleriano
+        System.out.println("Ciclo Euleriano:");
+        for (int i = resultado.size() - 1; i >= 0; i--) {
+            System.out.print(nomesVertices[resultado.get(i)].getNome());
+            if (i != 0) {
+                System.out.print(" -> ");
+            }
+        }
+        System.out.println();
+    }
+
 }
