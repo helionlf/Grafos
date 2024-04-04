@@ -70,7 +70,7 @@ public class Main {
         // String arestaC[] = {"a", "b", "d"};
         // String arestaD[] = {"c", "e"};
         // String arestaE[] = {"d", "f"};
-        // String arestaF[] = {"a", "e", "g"};
+        // String arestaF[] = {"e", "g"};
         // String arestaG[] = {"a", "e", "f"};
         
         // Vertice a = new Vertice("a", 0, arestaA);
@@ -105,12 +105,6 @@ public class Main {
             System.out.println("\nÉ Euleriano");
         } else {
             System.out.println("\nNão é Euleriano");
-        }
-        
-        if(grafo.notEuleriano()) {
-            System.out.println("\nÉ Não Euleriano");
-        } else {
-            System.out.println("\nNão é Não Euleriano");
         }
         
         if(grafo.isSemeEuleriano()) {
