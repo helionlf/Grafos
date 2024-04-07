@@ -113,8 +113,8 @@ public class Main {
             System.out.println("\nNão é Seme Euleriano");
         }
         
-        grafo.encontrarCaminhoEuleriano();
+        System.out.println();
         
-        grafo.encontrarCaminhoEulerianoTeste();
+        grafo.encontrarCaminhoEuleriano();
     }
 }
