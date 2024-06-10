@@ -1,9 +1,6 @@
-8 11 3
-a c d
-b c d
-c a b d h
-d a b c f g
-e f g
-f d e g
-g e f d
-h c
+5 0
+s t 6 y 7
+t x 5 y 8 z -4
+x t -2
+y x -3 z 9
+z s 2 x 7

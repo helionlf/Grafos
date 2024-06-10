@@ -8,13 +8,12 @@ public class Vertice {
     private boolean descoberto;
     private int distancia;
     
-    public Vertice(String nome, int indice, String[] arestas) {
+    public Vertice(String nome, int indice) {
         this.nome = nome;
         this.indice = indice;
-        this.arestas = arestas;
         this.visitado = false;
         this.descoberto = false;
-        this.distancia = 0;
+        this.distancia = Integer.MAX_VALUE; // Inicializa com infinito
          
     }
     
